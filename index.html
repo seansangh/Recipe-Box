@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.6/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.6/umd/react-dom.production.min.js"></script>
+    <script src=" https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+var food=['Artichoke Pasta','Garlic Chicken', 'Easy Chocolate Pie', 'Lime Chicken Tacos', 'Artichoke Dip'];
+
+var ingredients=[['2 tablespoons butter',
+    '2 cloves garlic, minced',
+    '1 cup heavy cream',
+    '3/4 teaspoon salt',
+    '1 teaspoon fresh-ground black pepper',
+    '2 1/2 cups canned, drained artichoke hearts (two 14-ounce cans), rinsed and cut into halves or quarters',
+    '3/4 pound fusilli',
+    '1/2 cup grated Parmesan cheese',
+    '2 tablespoons chopped chives, scallion tops, or parsley'],['Garlic Chicken Ingredients'],['Easy Chocolate Pie Ingredients'],['Lime Chicken Tacos Ingredients'],['Artichoke Dip Ingredients']];
+
+var directions=[['    In a medium saucepan, melt the butter over moderately low heat. Add the garlic and cook for 30 seconds. Stir in the cream, salt, pepper, and artichoke hearts. Cook until just heated through, about 3 minutes.',
+    'In a large pot of boiling, salted water, cook the fusilli until just done, about 13 minutes. Drain the pasta and toss with the cream sauce, Parmesan, and chives.'],['Garlic Chicken Directions'],['Easy Chocolate Pie Directions'],['Lime Chicken Tacos Directions'],['Artichoke Dip Directions']];
+
+
+
+class MyComponent extends React.Component{
+  constructor(props){
+   super(props);
+   this.state={
+     food:[food], ingredients:[ingredients], directions:[directions], length:5, choice:0, foo:[food]
+   }
+    this.handleChange= this.handleChange.bind(this);
+    this.eventChange= this.eventChange.bind(this);
+    this.eventChange2= this.eventChange2.bind(this);
+    this.plusChange= this.plusChange.bind(this);
+    
+  }
+  
+  async plusChange(event){
+    var r1= document.getElementById('ar1').value;
+    var i1= document.getElementById('ai1').value;
+    var d1= document.getElementById('ad1').value;
+    var i2= i1.split(' '); var i3=[]; var current="";
+    var d2= d1.split(' '); var d3=[]; var current3="";
+        var yae= i1.split('');  console.log(yae);
+        var nae= d1.split('');
+    for(var y=0; y<yae.length; y++){
+      if(yae[y]=='\n'){console.log(y)}
+
+          if(yae[y+1] == '\n'){
+           yae[y]= yae[y].replace(',','')        
+          }
+          if(yae[y+1] == ' '){
+           yae[y]= yae[y].replace(' ','')        
+          }             
+         if(yae[y]!='\n'){
+           current+=yae[y];
+           if(yae[y+1] != '\n' && y+1 != yae.length){
+           //current+=" ";
+              }
+           if(y+1==yae.length){
+             i3.push([current])            
+           }
+          }
+          else{
+            i3.push(current)
+            current="";
+          }     
+      
+      
+    }
+    for(var z=0; z<i2.length; z++){
+      //console.log(i2[z])
+    /*  if(i2[z]=='\n'){console.log('z is: '+z)}
+          if(i2[z+1] == '\n'){
+           i2[z]= i2[z].replace(',','')        
+          }
+          if(i2[z+1] == ' '){
+           i2[z]= i2[z].replace(' ','')        
+          }             
+         if(i2[z]!='\n'){
+           current+=i2[z];
+           if(i2[z+1] != '\n' && z+1 != i2.length){
+           current+=" ";
+              }
+           if(z+1==i2.length){
+             i3.push([current])            
+           }
+          }
+          else{
+            i3.push(current)
+            current="";
+          }*/
+               
+    }
+          i3=i3.filter(x=>x!="");
+
+/*for(var x=0; x<d2.length; x++){
+          if(d2[x+1] == '\n'){
+           d2[x]= d2[x].replace(',','')        
+          }
+          if(d2[x+1] == ' '){
+           d2[x]= d2[x].replace(' ','')        
+          }       
+         if(d2[x]!='\n'){
+           current3+=d2[x];
+           if(d2[x+1] != '\n' && x+1 != d2.length){
+           current3+=" ";
+              }
+           if(x+1==d2.length){
+             d3.push(current3)            
+           }
+          }
+          else{
+            d3.push(current3)
+            current3="";
+          }
+    }*/
+    
+    for(var x=0; x<nae.length; x++){
+      if(nae[x]=='\n'){console.log(x)}
+
+          if(nae[x+1] == '\n'){
+           nae[x]= nae[x].replace(',','')        
+          }
+          if(nae[x+1] == ' '){
+           nae[x]= nae[x].replace(' ','')        
+          }             
+         if(nae[x]!='\n'){
+           current3+=nae[x];
+           if(nae[x+1] != '\n' && x+1 != nae.length){
+           //current+=" ";
+              }
+           if(x+1==nae.length){
+             d3.push([current3])            
+           }
+          }
+          else{
+            d3.push(current3)
+            current3="";
+          }     
+      
+      
+    }   
+    
+          d3=d3.filter(x=>x!="");          
+          
+    var ra= this.state.food[0];
+    ra.push(r1)
+    var ing= this.state.ingredients[0];
+    ing.push(i3);
+          
+    var ste= this.state.directions[0];
+    ste.push(d3);
+    console.log(ste)
+    
+    var len= this.state.length;
+    len+=1;
+
+     console.log(ing)     
+         
+      //   console.log(ing) 
+      //   console.log(this.state.ingredients)
+    //$('#r1').val(this.state.food[0][i]);
+   // $('#i1').val(this.state.ingredients[0][i]);
+   // $('#d1').val(this.state.directions[0][i]);
+          
+await this.setState({food: [ra], ingredients: [ing], directions: [ste], length: len})      
+    
+ for(var i=0; i<100; i++){
+ if(i==0){
+    $('.ae1'+i).css('display','block')    
+    $('.be1'+i).css('display','block')    
+    $('.ce1'+i).css('display','block')    
+  }else{
+    $('.ae1'+i).css('display','none')
+    $('.be1'+i).css('display','none')    
+    $('.ce1'+i).css('display','none')       
+  }
+    }   
+    
+  }
+  
+  
+  async eventChange(event){
+    
+    for(var i=0; i<100; i++){
+        if($('.ae1'+i).css('display')=='block' ){
+    $('#r1').val(this.state.food[0][i]);
+    $('#i1').val(this.state.ingredients[0][i].map(x=>' \n '+x));
+    $('#d1').val(this.state.directions[0][i].map(x=>' \n '+x));
+        }}      
+  }
+  
+    async eventChange2(event){
+    for(var i=0; i<100; i++){
+        if($('.ae1'+i).css('display')=='block' ){
+          
+    var foo= this.state.food;
+    var goo= this.state.ingredients;      
+    var hoo= this.state.directions;          
+     //  await this.setState({ingredients: [newA2], directions: [newA3], length: ioo, food: [newA]})  
+          
+    var r1= document.getElementById('r1').value;
+    var i1= document.getElementById('i1').value;
+    var d1= document.getElementById('d1').value;
+    var i2= i1.split(' '); var i3=[]; var current="";
+    var d2= d1.split(' '); var d3=[]; var current3="";
+    
+
+   /* for(var z=0; z<i2.length; z++){
+          if(i2[z+1] == '\n'){
+           i2[z]= i2[z].replace(',','')        
+          }
+          if(i2[z+1] == ' '){
+           i2[z]= i2[z].replace(' ','')        
+          }       
+         if(i2[z]!='\n'){
+           current+=i2[z];
+           if(i2[z+1] != '\n'){
+           current+=" ";
+              }
+          }
+          else{
+            i3.push(current)
+            current="";
+          }
+    }
+          i3=i3.filter(x=>x!="");
+
+for(var x=0; x<d2.length; x++){
+          if(d2[x+1] == '\n'){
+           d2[x]= d2[x].replace(',','')        
+          }
+          if(d2[x+1] == ' '){
+           d2[x]= d2[x].replace(' ','')        
+          }       
+         if(d2[x]!='\n'){
+           current3+=d2[x];
+           if(d2[x+1] != '\n' && x+1 != d2.length){
+           current3+=" ";
+              }
+           if(x+1==d2.length){
+             d3.push(current3)            
+           }
+          }
+          else{
+            d3.push(current3)
+            current3="";
+          }
+    }
+          d3=d3.filter(x=>x!="");        */  
+          
+     //console.log(d2[72])     
+ 
+          
+          
+        var yae= i1.split('');  console.log(yae);
+        var nae= d1.split('');
+    for(var y=2; y<yae.length; y++){
+      if(yae[y]=='\n'){console.log(y)}
+
+          if(yae[y+1] == '\n'){
+           yae[y]= yae[y].replace(',','')        
+          }
+          if(yae[y+1] == ' '){
+           yae[y]= yae[y].replace(' ','')        
+          }             
+         if(yae[y]!='\n'){
+           current+=yae[y];
+           if(yae[y+1] != '\n' && y+1 != yae.length){
+           //current+=" ";
+              }
+           if(y+1==yae.length){
+             i3.push(current)            
+           }
+          }
+          else{
+            i3.push(current)
+            current="";
+          }     
+    }    
+    //console.log(i3)
+          i3=i3.filter(x=>x!="");
+          console.log('me')
+    for(var x=2; x<nae.length; x++){ console.log(x+' yes '+ nae.length)
+      if(nae[x]=='\n'){console.log(x)}
+
+          if(nae[x+1] == '\n'){
+           nae[x]= nae[x].replace(',','')        
+          }
+          if(nae[x+1] == ' '){
+           nae[x]= nae[x].replace(' ','')        
+          }             
+         if(nae[x]!='\n'){
+           current3+=nae[x];
+           if(nae[x+1] != '\n' && x+1 != nae.length){
+           //current+=" ";
+              }
+           if(x+1==nae.length){
+             d3.push([current3]) 
+          
+           }
+          }
+          else{
+            d3.push(current3)
+            current3="";
+          }      
+    }   
+
+          d3=d3.filter(x=>x!="");             
+          
+    var ing= this.state.ingredients;
+    ing[0][i]=i3;
+                  console.log('a')  
+
+    var ste= this.state.directions;
+    ste[0][i]=d3
+
+    var air= foo[0].slice(0,i); var air2= foo[0].slice(i+1); var newA= [].concat(air).concat(r1).concat(air2);  
+    var bair= goo[0].slice(0,i); var bair2= goo[0].slice(i+1); var newA2= [].concat(bair).concat(i1).concat(bair2);
+    var cair= hoo[0].slice(0,i); var cair2= hoo[0].slice(i+1); var newA3= [].concat(cair).concat(d1).concat(cair2);         
+      //   console.log(ing) 
+      //   console.log(this.state.ingredients)
+    //$('#r1').val(this.state.food[0][i]);
+   // $('#i1').val(this.state.ingredients[0][i]);
+   // $('#d1').val(this.state.directions[0][i]);
+          
+await this.setState({food: [newA], ingredients: ing, directions: ste})          
+          
+          
+        }}      
+    //console.log([newA2])
+  }
+  
+  async handleChange(event){
+    for(var i=0; i<100; i++){
+        if($('.ae1'+i).css('display')=='block' ){
+    var foo= this.state.food;
+    var goo= this.state.ingredients;      
+    var hoo= this.state.directions;      
+    var ioo= this.state.length-1; 
+          
+    var air= foo[0].slice(0,i); var air2= foo[0].slice(i+1); var newA= [].concat(air).concat(air2);
+     var bair= goo[0].slice(0,i); var bair2= goo[0].slice(i+1); var newA2= [].concat(bair).concat(bair2);
+    var cair= hoo[0].slice(0,i); var cair2= hoo[0].slice(i+1); var newA3= [].concat(cair).concat(cair2);
+
+	    await this.setState({ingredients: [newA2], directions: [newA3], length: ioo, food: [newA]})  
+          
+   
+        } 
+    }
+    
+    for(var i=0; i<100; i++){
+ if(i==0){
+    $('.ae1'+i).css('display','block')    
+    $('.be1'+i).css('display','block')    
+    $('.ce1'+i).css('display','block')    
+  }else{
+    $('.ae1'+i).css('display','none')
+    $('.be1'+i).css('display','none')    
+    $('.ce1'+i).css('display','none')       
+  }
+    }
+    
+}
+
+
+  render(){ 
+
+$(document).ready(function(){
+$('.fa-plus-square-o').on('click', function(event){
+  $('#popup3').css('display','block')
+})  
+$('#mo').on('click', function(event){
+  $('#popup3').css('display', 'none')
+})  
+$('#close2').on('click', function(event){
+  $('#popup3').css('display', 'none')
+})   
+$('.me').on('click', function(event){
+  for(var i=0; i<100; i++){
+
+  var a= event.target.id.match(/\d/gi);
+  a=a[0];
+
+
+  if(a==i.toString()){
+    $('.ae1'+i).css('display','block')    
+    $('.be1'+i).css('display','block')    
+    $('.ce1'+i).css('display','block')    
+  }else{
+    $('.ae1'+i).css('display','none')
+    $('.be1'+i).css('display','none')    
+    $('.ce1'+i).css('display','none')       
+  }
+}
+})
+  $('.right').on('click', function(){
+    $('#popup').css('display', 'none')
+  })
+  $('#close').on('click', function(){
+    $('#popup').css('display', 'none')
+  })
+  $('#c').on('click', function(){  
+    $('#popup').css('display','block')    
+})
+   })
+   var i=0; 
+    return(
+    <div> 
+     <div id="one">
+       <div id='box'>
+      {this.state.food[0].map(function(value,index){
+      return <p className="me" id={'me'+index}>{value} <i className="fa fa-arrow-right" id={"j"+index} ></i>
+</p>
+
+    })}
+       </div>
+      </div>
+      <div id="two">
+        <div id="box2">
+          <div id="title">
+{this.state.food[0].map(function(value,index){
+  return <div className={"ae1"+index}>{value}
+</div>
+})}
+<div className="icons" >
+<i className="fa fa-trash" id='t' onClick={(x)=>this.handleChange(x)}></i> 
+<i className="fa fa-clipboard" id='c' onClick={(x)=>this.eventChange(x)}></i>
+</div>
+          </div>
+          <div id="info">
+           <h2>Ingredients:</h2>
+            <ul class="list">    
+{this.state.ingredients[0].map(function(value,index){
+  return (<div className={'be1'+index}>
+    {value.map(function(m,ind){
+     return <li className={"bela"+ind}> {value[ind]}</li>
+                                })}
+ </div> 
+)})}              
+            </ul>
+            
+           <h2>Directions:</h2>
+            <ol class="list">
+                           
+{this.state.directions[0].map(function(value,index){
+  return (<div className={'ce1'+index}>
+    {value.map(function(m,ind){
+     return <li className={"cela"+ind}> {value[ind]}</li>
+                                })}
+ </div> 
+)})}               
+              
+              
+            </ol>           
+            
+          </div>
+          <div id="title2">
+<i className="fa fa-plus-square-o"></i>
+          </div>
+        </div>
+      </div>
+<div id="popup">
+  <div id="popup2">
+    <p class="right"><i class="fa fa-close"></i></p>
+    <p class="r1">Recipe</p>
+    <input type="text" id="r1" name="r1" />
+    <p class="i1">Ingredients</p>
+    <textarea type="text" id="i1" name="i1" />
+    <p class="d1">Directions</p>
+    <textarea type="text" id="d1" name="d1" /> 
+    <button id="butt" onClick={this.eventChange2}>Save</button>
+    <button id="close">Close</button>
+  </div>
+</div>
+
+
+
+<div id="popup3">
+  <div id="popup2">
+    <p class="right"><i class="fa fa-close" id="mo"></i></p>
+    <p class="r1">Recipe</p>
+    <input type="text" id="ar1" name="ar1" />
+    <p class="i1">Ingredients</p>
+    <textarea type="text" id="ai1" name="ai1" />
+    <p class="d1">Directions</p>
+    <textarea type="text" id="ad1" name="ad1" /> 
+    <button id="butt" onClick={this.plusChange}>Save</button>
+    <button id="close2">Close</button>
+  </div>
+</div>
+
+    </div>
+    )
+  }
+}
+
+
+
+ReactDOM.render(<MyComponent />, document.getElementById('recipe'))
+
+    
+    
+    
+    </script>
+  </head>
+  <body>
+    <div id="out">
+      <div id="in">
+        <h1><i class="fa fa-book"></i> Recipe Box</h1>
+      </div>
+
+        <div id="recipe">
+          
+        </div>
+    </div>
+  </body>
+</html>
